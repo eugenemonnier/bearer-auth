@@ -18,8 +18,8 @@ authRouter.post('/signin', basicAuth, (req, res, next) => {
   res.status(200).json({ token: req.token })
 })
 
-authRouter.get('/horses', bearerAuth, (req, res, next) => {
-  res.status(200).json([{ name: 'unicorny', maneColor: 'black' }])
+authRouter.post('/secret', bearerAuth, (req, res, next) => {
+  res.status(200).json(req.user)
 })
 
 authRouter.get('/users', async (req, res, next) => {

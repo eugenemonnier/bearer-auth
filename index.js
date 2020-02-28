@@ -5,7 +5,8 @@ const { MONGODB_URI, PORT } = process.env
 const mongoose = require('mongoose')
 const options = {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useCreateIndex: true
 }
 mongoose.connect(MONGODB_URI, options, () => {
   console.log('Connected to MongoDB.')
