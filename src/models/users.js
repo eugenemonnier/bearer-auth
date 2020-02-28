@@ -20,7 +20,7 @@ userSchema.methods.generateToken = function () {
     id: this._id,
     username: this.username
   }
-  return jwt.sign(tokenData, SECRET)
+  return jwt.sign(tokenData, SECRET, { expiresIn: '15m' })
 }
 
 userSchema.statics.authenticateBasic = function (username, password) {
@@ -32,7 +32,6 @@ userSchema.statics.authenticateBasic = function (username, password) {
 userSchema.statics.authenticateToken = async function (token) {
   try {
     const tokenObject = jwt.verify(token, SECRET)
-    console.log(tokenObject)
     // if the token has a username, try to get and return that user
     if (!tokenObject.username) {
       return Promise.reject(new Error('Token is malformed'))
